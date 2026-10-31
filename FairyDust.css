@@ -1,0 +1,52 @@
+.fairy-container{
+
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:999;
+
+}
+
+.spark{
+
+position:absolute;
+
+width:10px;
+height:10px;
+
+border-radius:50%;
+
+background:white;
+
+box-shadow:
+0 0 8px white,
+0 0 16px #ffd3f0,
+0 0 30px #c8b8ff;
+
+animation:spark 1.4s linear forwards;
+
+}
+
+@keyframes spark{
+
+0%{
+
+opacity:1;
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(-50%,-90px)
+scale(0);
+
+}
+
+}

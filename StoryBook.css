@@ -1,0 +1,139 @@
+.storybookWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, .05);
+  /* Added perspective property to enable real 3D physical page flipping space depths */
+  perspective: 2000px;
+  transition: filter 1s ease;
+}
+
+/* Smooth cinematic background response during book flip execution */
+.bookIsOpening {
+  filter: blur(8px);
+}
+
+.magicBook {
+  width: 820px;
+  height: 500px;
+  position: relative;
+  border-radius: 30px;
+  /* Removed simple 'overflow:hidden' to prevent cutting off the 3D page rotation path */
+  background: linear-gradient(
+    135deg,
+    #fff5f9,
+    #f7f1ff,
+    #edf7ff
+  );
+  box-shadow: 0 40px 120px rgba(175, 150, 255, .25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.bookGlow {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 210, 230, .5),
+    transparent 70%
+  );
+  filter: blur(100px);
+  animation: bookAura 8s linear infinite;
+  pointer-events: none;
+}
+
+.leftPage {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, .15);
+  border-right: 1px solid rgba(255, 255, 255, .3);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  pointer-events: none;
+}
+
+.rightPage {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, .08);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  transform-origin: left center; /* Structural mechanical hinge anchor point */
+  /* Replaced basic raw CSS transition property to let Framer Motion handle smooth 3D interpolation springs */
+  z-index: 3;
+}
+
+.bookContent {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.chapter {
+  font-size: 20px;
+  letter-spacing: 6px;
+  color: #c48cb7;
+}
+
+.bookContent h1 {
+  font-size: 68px;
+  margin: 18px 0;
+  font-family: "Playfair Display", serif;
+  color: #6b5e96;
+}
+
+.bookContent h3 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #9b7bd2;
+}
+
+.bookContent p {
+  width: 60%;
+  margin: 35px 0;
+  font-size: 22px;
+  line-height: 40px;
+  color: #75688e;
+}
+
+.bookContent button {
+  padding: 18px 55px;
+  font-size: 20px;
+  border: none;
+  border-radius: 60px;
+  background: linear-gradient(
+    90deg,
+    #ffc9e2,
+    #dfcbff,
+    #cceeff
+  );
+  cursor: pointer;
+  transition: .4s;
+}
+
+.bookContent button:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(190, 160, 255, .35);
+}
+
+@keyframes bookAura {
+  100% {
+    transform: rotate(360deg);
+  }
+}
